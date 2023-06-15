@@ -429,5 +429,5 @@ class GemminiModule[T <: Data: Arithmetic, U <: Data, V <: Data]
   // Performance Counters Access
   //=========================================================================
   
-  MakeRoCCBusyLatencyInsensitive(io.busy)
+  MakeRoCCBusyLatencyInsensitive(io.busy, io.cmd.ready, io.cmd.valid)
 }
