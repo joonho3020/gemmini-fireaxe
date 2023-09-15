@@ -11,6 +11,7 @@ import freechips.rocketchip.diplomacy._
 import freechips.rocketchip.tile._
 import freechips.rocketchip.util.ClockGate
 import freechips.rocketchip.tilelink.TLIdentityNode
+import midas.targetutils.MakeRoCCBusyLatencyInsensitive
 import GemminiISA._
 import Util._
 
@@ -427,5 +428,6 @@ class GemminiModule[T <: Data: Arithmetic, U <: Data, V <: Data]
   //=========================================================================
   // Performance Counters Access
   //=========================================================================
-
+  
+  MakeRoCCBusyLatencyInsensitive(io.busy, io.cmd.ready, io.cmd.valid)
 }
