@@ -649,7 +649,7 @@ class LoopConvExecute(block_size: Int, large_iterator_bitwidth: Int, small_itera
 
   // Addresses
   val a_addr = Mux(req.trans_input_3120,
-    a_addr_start +& (b / block_size.U) * input_spad_stride +& kch * (irows >> req.downsample) * (icols >> req.downsample) +& (irow >> req.downsample) * (icols >> req.downsample) +& (icol >> req.downsample),
+    a_addr_start +& (b / block_size.U(kch.getWidth.W)) * input_spad_stride +& kch * (irows >> req.downsample) * (icols >> req.downsample) +& (irow >> req.downsample) * (icols >> req.downsample) +& (icol >> req.downsample),
     a_addr_start +& (kch / block_size.U(kch.getWidth.W)) * input_spad_stride +& b * (irows >> req.downsample) * (icols >> req.downsample) +& (irow >> req.downsample) * (icols >> req.downsample) +& (icol >> req.downsample))
 
   // val c_addr = Mux(ex_overwrite && krow === 0.U && kcol === 0.U && kch === 0.U, d_addr_start, c_addr_start) +&
